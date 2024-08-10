@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import GeneratePhrase from './PhraseGeneration/GeneratePhrase'
-import WalletDetails from './WalletDetails'
+import SolanaKeys from './KeyGeneration/SolanaKeys'
+import EthKeys from './KeyGeneration/EthKeys'
 
 export default function Home() {
   
-  const [phrase, setPhrase] = useState(localStorage.getItem('mnemonic'))
+  const [phrase, setPhrase] = useState('')
+  const [continueFlag, setContinueFlag] = useState(false)
   
   return (
     
@@ -13,12 +15,15 @@ export default function Home() {
         <div className="container px-12 py-8 flex flex-col items-center justify-center ">
         <div className='text-white text-4xl my-12' >Web Crypto Wallet</div>
 
-          {phrase ? (
+          {phrase && continueFlag ? (
 
-            <WalletDetails/>
+            <>
+            <SolanaKeys phrase={phrase}/>
+            <EthKeys phrase={phrase}/>
+            </>
 
           ): (
-            <GeneratePhrase/>
+            <GeneratePhrase phrase={phrase} setPhrase={setPhrase} setContinueFlag={setContinueFlag}/>
           )}
             
             
