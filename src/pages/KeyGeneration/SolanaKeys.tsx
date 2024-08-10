@@ -26,6 +26,8 @@ export default function SolanaKeys({ phrase }: SolanaKeyProp) {
 
     const generateKeyPair = (mnemonic: string) => {
 
+        let solanaPublicKey="" 
+        let solanaPrivateKey =""
         const seed = mnemonicToSeedSync(mnemonic);
         for (let i = 0; i < 4; i++) {
             const path = `m/44'/501'/${i}'/0'`; // This is the derivation path
@@ -36,26 +38,27 @@ export default function SolanaKeys({ phrase }: SolanaKeyProp) {
 
             const keypair = nacl.sign.keyPair.fromSeed(derivedSeed);
             const secretKey = keypair.secretKey;
-            const publicKey = keypair.publicKey;
+            // const publicKey = keypair.publicKey;
 
-            const solanaPublicKey = Keypair.fromSecretKey(secretKey).publicKey.toBase58();
+           solanaPublicKey = Keypair.fromSecretKey(secretKey).publicKey.toBase58();
             const solanaPrivateKeyHex = Buffer.from(secretKey).toString('hex')
 
 
             //hex to base58 conversion
-            const solanaPrivateKey = bs58.encode(Buffer.from(solanaPrivateKeyHex, 'hex'));
+            solanaPrivateKey = bs58.encode(Buffer.from(solanaPrivateKeyHex, 'hex'));
 
 
-            setSolKeys({
-                publicKey: solanaPublicKey,
-                privateKey: solanaPrivateKey,
-            })
+
 
 
 
         }
+        setSolKeys({
+            publicKey: solanaPublicKey,
+            privateKey: solanaPrivateKey,
+        })
     }
-    console.log(solKeys)
+
 
     return (
         <>
