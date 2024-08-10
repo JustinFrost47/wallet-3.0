@@ -8,45 +8,48 @@ interface EnterMnemonicProp {
     setMode: Function,
 }
 
-export default function EnterMnemonic({setPhrase, setContinueFlag, setMode} : EnterMnemonicProp) {
+export default function EnterMnemonic({ setPhrase, setContinueFlag, setMode }: EnterMnemonicProp) {
 
-    const [mnemonic, setMnemonic] = useState('');  
+    const [mnemonic, setMnemonic] = useState('');
     const [openText, setOpenText] = useState(false)
 
 
-  const handleConfirm = () => {
+    const handleConfirm = () => {
 
-    setPhrase(mnemonic);
-    console.log(mnemonic)
-    setContinueFlag(true)
+        setPhrase(mnemonic);
+        console.log(mnemonic)
+        setContinueFlag(true)
 
-  }
+    }
 
-  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setMnemonic(event.target.value);
-  };
+    const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setMnemonic(event.target.value);
+    };
 
-  const openTextArea = () => {
+    const openTextArea = () => {
 
 
-    console.log("temp")
-    setOpenText(true)
-    setMode("enter")
+        console.log("temp")
+        setOpenText(true)
+        setMode("enter")
 
-  }
+    }
 
-  return (
-    <>
-        {openText ? (
-        <div className="grid w-full gap-2">
-        <Textarea placeholder="Enter My own Mnemonic Phrase"
-                value={mnemonic}
-                onChange={handleChange}  />
-        <Button className="my-8" onClick={handleConfirm} >Confirm</Button>
-      </div>
-    ) : (
-        <Button className="my-8" onClick={openTextArea}>Enter Phrase</Button>
-    )}
-    </>
-  )
+    return (
+        <>
+            {openText ? (
+                <div className="grid w-full gap-2">
+                    <Textarea
+
+                        className=' bg-slate-700 text-white'
+                        placeholder="Enter My own Mnemonic Phrase"
+                        value={mnemonic}
+                        onChange={handleChange} />
+                    <Button className="my-8" onClick={handleConfirm} >Confirm</Button>
+                </div>
+            ) : (
+                <Button className="my-8" onClick={openTextArea}>Enter Phrase</Button>
+            )}
+        </>
+    )
 }
