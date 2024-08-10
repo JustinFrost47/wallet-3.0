@@ -6,7 +6,7 @@ interface CopyAreaProp {
     wordSequence? : string
 }
 
-let tempSequence = "embrace birth flag glare smoke own axis morning debris chunk vapor panic"
+let tempSequence = " *temp phrase* embrace birth flag glare smoke own axis morning debris chunk vapor panic"
 
 export default function CopyArea({wordSequence = tempSequence} : CopyAreaProp) {
 
@@ -27,7 +27,7 @@ export default function CopyArea({wordSequence = tempSequence} : CopyAreaProp) {
     <div onClick={handleClick} className="copy-area bg-gray-950 text-white w-1/2 h-40 p-8 m-4 rounded-lg">
         {wordSequence}
 
-        <p className="mt-4 p-4 text-gray-600 font-small">Click Card to Copy Phrase</p>
+        {/* <p className="mt-4 p-4 text-gray-600 font-small">Click Card to Copy Phrase</p> */}
     </div>
   )
 }
