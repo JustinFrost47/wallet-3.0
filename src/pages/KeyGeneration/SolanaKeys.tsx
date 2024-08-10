@@ -7,6 +7,7 @@ import nacl from "tweetnacl";
 import { /*generateMnemonic,*/ mnemonicToSeedSync } from "bip39";
 import { derivePath } from "ed25519-hd-key";
 import { Keypair } from "@solana/web3.js";
+import bs58 from 'bs58';
 
 
 interface SolanaKeyProp {
@@ -32,7 +33,9 @@ export default function SolanaKeys({phrase} : SolanaKeyProp) {
         const publicKey = keypair.publicKey;
 
         const solanaPublicKey = Keypair.fromSecretKey(secretKey).publicKey.toBase58();
-        const solanaPrivateKey = Buffer.from(secretKey).toString('hex')
+        const solanaPrivateKeyHex = Buffer.from(secretKey).toString('hex')
+
+        const solanaPrivateKey = bs58.encode(Buffer.from(solanaPrivateKeyHex, 'hex'));
 
         console.log(keypair)
         console.log(publicKey)
