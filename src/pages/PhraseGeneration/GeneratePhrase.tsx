@@ -6,12 +6,13 @@ import { generateMnemonic } from 'bip39';
 
 interface GeneratePhraseProp {
     phrase: string,
-    setPhrase: any,
-    setContinueFlag: any,
+    setPhrase: Function,
+    setContinueFlag: Function,
+    setMode: Function,
 }
 
 
-export default function GeneratePhrase({phrase, setPhrase, setContinueFlag} : GeneratePhraseProp ) {
+export default function GeneratePhrase({phrase, setPhrase, setContinueFlag, setMode} : GeneratePhraseProp ) {
 
 
 
@@ -20,6 +21,7 @@ export default function GeneratePhrase({phrase, setPhrase, setContinueFlag} : Ge
         const mnemonic = generateMnemonic();
         // localStorage.setItem('mnemonic', mnemonic)
         setPhrase(mnemonic)
+        setMode("generate")
         // console.log('Generated Mnemonic:', mnemonic);
     }
 

@@ -20,39 +20,43 @@ export default function Home() {
 
 
 
-        {phrase || mode ? (
-
+        {mode ? (
           <>
-            {mode && continueFlag ? (
+          {mode &&  continueFlag && (
+             <>
+             <SolanaKeys phrase={phrase} />
+             <EthKeys phrase={phrase} />
+           </>
+          ) }
+
+          {mode === "generate" ? (
+            <GeneratePhrase phrase={phrase} setPhrase={setPhrase} setContinueFlag={setContinueFlag} setMode={setMode}/>
+            ) : (
+              <EnterMnemonic setPhrase={setPhrase} setContinueFlag={setContinueFlag} setMode={setMode} />
+              )}
+          </>
+        ) : (
+          <>
+
+            {phrase &&  continueFlag ? (
+
               <>
                 <SolanaKeys phrase={phrase} />
                 <EthKeys phrase={phrase} />
               </>
 
             ) : (
+
               <>
-                {mode === "generate" ? (
-                  <GeneratePhrase phrase={phrase} setPhrase={setPhrase} setContinueFlag={setContinueFlag} setMode={setMode} />
-                ) : (
-                  <EnterMnemonic setPhrase={setPhrase} setContinueFlag={setContinueFlag} setMode={setMode} />
-                )}
+                <GeneratePhrase phrase={phrase} setPhrase={setPhrase} setContinueFlag={setContinueFlag} setMode={setMode} />
+                <p className='text-white'>or</p>
+                <EnterMnemonic setPhrase={setPhrase} setContinueFlag={setContinueFlag} setMode={setMode} />
               </>
+
             )}
+
           </>
-
-        ) : (
-
-          <>
-            <GeneratePhrase phrase={phrase} setPhrase={setPhrase} setContinueFlag={setContinueFlag} setMode={setMode} />
-            <p className='text-white'>or</p>
-            <EnterMnemonic setPhrase={setPhrase} setContinueFlag={setContinueFlag} setMode={setMode} />
-          </>
-
         )}
-
-
-
-        
 
 
       </div>
