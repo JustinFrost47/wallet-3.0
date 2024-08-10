@@ -74,7 +74,7 @@ export default function SolanaKeys({ phrase }: SolanaKeyProp) {
                 </>
 
             ) : (
-                <Button className="flex-1 flex-col m-8" onClick={() => generateKeyPair(phrase)}>
+                <Button className="flex-1 flex-col m-8 shadow-2xl" onClick={() => generateKeyPair(phrase)}>
 
                     <div >
                         <img className="h-8 w-8 " src="https://cryptologos.cc/logos/solana-sol-logo.png?v=032" alt="Solana" />

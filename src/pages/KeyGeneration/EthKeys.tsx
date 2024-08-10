@@ -58,7 +58,7 @@ export default function EthKeys({ phrase }: EthKeyProp) {
                 </>
 
             ) : (
-                <Button className="flex-1 flex-col " onClick={() => generateKeyPair(phrase)}>
+                <Button className="flex-1 flex-col shadow-2xl" onClick={() => generateKeyPair(phrase)}>
 
                     <div >
                         <img className="h-8 w-8 " src="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=032" alt="Solana" />

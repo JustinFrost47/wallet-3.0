@@ -41,7 +41,7 @@ export default function EnterMnemonic({ setPhrase, setContinueFlag, setMode }: E
                 <div className="grid w-full gap-2">
                     <Textarea
 
-                        className=' bg-slate-700 text-white'
+                        className=' bg-slate-700 text-white shadow-xl'
                         placeholder="Enter My own Mnemonic Phrase"
                         value={mnemonic}
                         onChange={handleChange} />
