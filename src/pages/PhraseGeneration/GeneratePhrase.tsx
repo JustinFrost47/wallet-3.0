@@ -33,10 +33,10 @@ export default function GeneratePhrase({phrase, setPhrase, setContinueFlag} : Ge
             {phrase ?
                 (<>
                 <CopyArea wordSequence={phrase} />
-                <Button onClick={refreshPage}>Continue</Button>
+                <Button className="my-8" onClick={refreshPage}>Continue</Button>
                 </>)
                 : (
-                    <Button onClick={createPhrase}>Generate Mnemonic</Button>
+                    <Button className="my-8" onClick={createPhrase}>Generate Mnemonic</Button>
                 )}
 
         </>
