@@ -63,6 +63,7 @@ export default function SolanaKeys({ phrase }: SolanaKeyProp) {
     return (
         <>
 
+
             {solKeys.publicKey && solKeys.privateKey  ? (
 
 
