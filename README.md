@@ -1,50 +1,34 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+# Crypto Wallet 3.0
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This is a simple crypto wallet that I built during my web3 learning journey at 100xDevs cohort. The workflow is straightforward: users can create a new mnemonic phrase and generate their key pairs, or they can bring their own mnemonic keys. I deliberately avoided saving the phrase in browser's local storage due to security concerns. Feel free to browse around , happy coding
 
-## Expanding the ESLint configuration
+## Live Link
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Check out the live version of the wallet here: [Crypto Wallet 3.0](https://justinfrost47.github.io/wallet-3.0/)
 
-- Configure the top-level `parserOptions` property like this:
+## Getting Started Locally
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/JustinFrost47/wallet-3.0
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### 2. Install Dependencies
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+npm install
 ```
+
+### 3. Run the Local Development Server
+
+```bash
+npm run dev
+```
+
+The server will be running on port 51773 (if the port is free).
+
+
+
