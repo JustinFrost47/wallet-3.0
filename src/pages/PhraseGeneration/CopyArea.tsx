@@ -26,7 +26,7 @@ export default function CopyArea({wordSequence = tempSequence} : CopyAreaProp) {
   return (
     <>
     <p className="mt-4 p-4 text-gray-600 font-small">Click Card to Copy Phrase</p>
-    <div onClick={handleClick} className="copy-area bg-gray-950 text-white w-1/2 h-40 p-8 m-4 rounded-lg shadow-2xl">
+    <div onClick={handleClick} className="copy-area bg-gray-950 text-white w-1/2 h-40 p-8 m-4 rounded-lg shadow-2xl overflow-scroll ">
         
         {wordSequence}
 
