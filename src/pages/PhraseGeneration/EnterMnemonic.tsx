@@ -17,13 +17,25 @@ export default function EnterMnemonic({ setPhrase, setContinueFlag, setMode }: E
     const handleConfirm = () => {
 
         setPhrase(mnemonic);
-        console.log(mnemonic)
         setContinueFlag(true)
 
     }
 
-    const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handleChange = (event: any ) => {
+
         setMnemonic(event.target.value);
+
+
+    };
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+
+        
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevents new lines in the textarea
+            
+            handleConfirm();
+        }
     };
 
     const openTextArea = () => {
@@ -38,13 +50,15 @@ export default function EnterMnemonic({ setPhrase, setContinueFlag, setMode }: E
     return (
         <>
             {openText ? (
-                <div className="grid w-full gap-2">
+                <div className="mnemonic-field grid w-full gap-2">
                     <Textarea
 
+                        
                         className=' bg-slate-700 text-white shadow-xl'
                         placeholder="Enter My own Mnemonic Phrase"
                         value={mnemonic}
-                        onChange={handleChange} />
+                        onChange={handleChange}
+                        onKeyDown={handleKeyDown} />
                     <Button className="my-8" onClick={handleConfirm} >Confirm</Button>
                 </div>
             ) : (
