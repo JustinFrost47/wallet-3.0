@@ -31,7 +31,7 @@ export default function SolanaKeys({ phrase }: SolanaKeyProp) {
 
         const seed = mnemonicToSeedSync(mnemonic);
 
-        const path = `m/44'/501'/${pathCount-1}'/0'`; // This is the derivation path
+        const path = `m/44'/501'/${pathCount - 1}'/0'`; // This is the derivation path
         const derivedSeed = derivePath(path, seed.toString("hex")).key;
         // const secret = nacl.sign.keyPair.fromSeed(derivedSeed).secretKey;
         //console.log(Keypair.fromSecretKey(secret).publicKey.toBase58());
@@ -54,7 +54,7 @@ export default function SolanaKeys({ phrase }: SolanaKeyProp) {
                 privateKey: solanaPrivateKey,
             }
         ])
-        console.log(            {
+        console.log({
             publicKey: solanaPublicKey,
             privateKey: solanaPrivateKey,
         })
@@ -64,7 +64,7 @@ export default function SolanaKeys({ phrase }: SolanaKeyProp) {
 
     const incrementKeys = () => {
         setCount(count + 1)
-        generateKeyPair(phrase, count+1)
+        generateKeyPair(phrase, count + 1)
     }
 
 
@@ -80,11 +80,11 @@ export default function SolanaKeys({ phrase }: SolanaKeyProp) {
                     <img className="h-8 w-8 " src="https://cryptologos.cc/logos/solana-sol-logo.png?v=032" alt="Solana" />
                     {solKeys.map((solKey, i) => (
 
-                            <div key={i} >
+                        <div key={i} >
 
-                            
+
                             <WalletDetails publicKey={solKey.publicKey} privateKey={solKey.privateKey} />
-                            </div>
+                        </div>
 
                     ))}
                     <Button className="my-8" onClick={incrementKeys}> Add Keys </Button>
