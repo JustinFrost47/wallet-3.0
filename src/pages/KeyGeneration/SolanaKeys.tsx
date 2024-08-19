@@ -1,5 +1,5 @@
 import { useState } from "react"
-import WalletDetails from "../WalletDetails"
+import Wallet from "../Wallets/Wallet"
 import { Button } from "../../components/ui/button";
 
 
@@ -83,7 +83,7 @@ export default function SolanaKeys({ phrase }: SolanaKeyProp) {
                         <div key={i} >
 
 
-                            <WalletDetails publicKey={solKey.publicKey} privateKey={solKey.privateKey} />
+                            <Wallet publicKey={solKey.publicKey} privateKey={solKey.privateKey} />
                         </div>
 
                     ))}

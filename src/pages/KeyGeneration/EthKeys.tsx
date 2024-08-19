@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Button } from "../../components/ui/button"
-import WalletDetails from "../WalletDetails";
+import Wallet from "../Wallets/Wallet";
 
 
 import { HDNodeWallet, Mnemonic } from "ethers";
@@ -67,7 +67,7 @@ export default function EthKeys({ phrase }: EthKeyProp) {
                     {ethKeys.map((ethKey, i) => (
                         <div key={i}>
 
-                            <WalletDetails
+                            <Wallet
                                 publicKey={ethKey.publicKey}
                                 privateKey={ethKey.privateKey}
                             />
