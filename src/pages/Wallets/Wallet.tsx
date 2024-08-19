@@ -2,6 +2,7 @@ import { useState } from "react";
 import WalletDashboard from "./WalletDashboard"
 
 interface walletDetails {
+  walletName?: string;
   publicKey?: string,
   privateKey?: string,
 
@@ -12,7 +13,7 @@ let sampleKey = "temp"
 
 
 
-export default function WalletDetails({ publicKey = sampleKey, privateKey = sampleAddress }: walletDetails) {
+export default function WalletDetails({ walletName ="Wallet", publicKey = sampleKey, privateKey = sampleAddress }: walletDetails) {
 
   const [openDashboard, setOpenDashboard] = useState(false);
 
@@ -34,7 +35,7 @@ export default function WalletDetails({ publicKey = sampleKey, privateKey = samp
       </div>
       {/* Conditionally render the WalletDashboard */}
       {openDashboard && (
-        <WalletDashboard publicKey={publicKey} privateKey={privateKey} visible={openDashboard} setVisible={setOpenDashboard}/>
+        <WalletDashboard walletName={walletName} publicKey={publicKey} privateKey={privateKey} visible={openDashboard} setVisible={setOpenDashboard}/>
       )}
     </>
   )
