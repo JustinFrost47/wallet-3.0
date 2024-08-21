@@ -82,5 +82,12 @@ export default class SolWallet {
     }
 
 
+    validatePublicKey (keyToCheck: string) {
+
+        const key = new PublicKey(keyToCheck);
+        // Lies on the ed25519 curve and is suitable for users
+        const isPublicKey = PublicKey.isOnCurve(key.toBytes())
+        return isPublicKey
+    }
 
 }

@@ -8,6 +8,8 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 
 
+import SolWallet from "./SolWallet";
+
 
 
 
@@ -15,15 +17,16 @@ import { toast } from "react-toastify";
 
 interface ReceivePannelProps {
 
-    publicKey: string;
+    currentWallet: SolWallet;
     visible: boolean;
     setVisible: any;
+    balance: number;
 
 }
 
 
 
-export default function ReceivePannel({ publicKey = "temp", visible, setVisible }: ReceivePannelProps) {
+export default function ReceivePannel({ currentWallet , visible, setVisible, balance }: ReceivePannelProps) {
     // State to control the visibility of the dashboard
     const [amount, setAmount] = useState("")
     const [toAddress, setToAddress] = useState<string>("")
@@ -35,9 +38,31 @@ export default function ReceivePannel({ publicKey = "temp", visible, setVisible 
     };
 
     // Handler for sending the transaction
-    const sendTransaction = () => {
-        console.log("Sending SOL to", toAddress, "Amount:", amount);
-        // Add logic to send the transaction here
+    const sendTransaction =  () => {
+
+        try{
+            const amountToSend : number = parseFloat(amount)
+
+            if(isNaN(amountToSend)){
+                toast.error("Invalid Amount")
+                return 
+            }
+            
+            if(amountToSend > balance ) {
+                toast.error("Insufficient Balance")
+                return 
+            } else {
+
+                if(currentWallet.validatePublicKey(toAddress)){
+                    currentWallet.sendTransaction(amountToSend, toAddress)
+                    toast.success("Token Transferred")
+                }
+
+            }
+        } catch (e) {
+            toast.error("Action Failed")
+        }
+
     };
 
     // Handler for changing the amount
@@ -97,7 +122,7 @@ export default function ReceivePannel({ publicKey = "temp", visible, setVisible 
                             
 
 
-                            <Button onClick={sendTransaction}>Send Solana</Button>
+                            <Button onClick={sendTransaction} >Send Solana</Button>
 
 
                         </div>
