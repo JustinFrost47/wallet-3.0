@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Button } from "../../components/ui/button"
-import Wallet from "../Wallets/Wallet";
+import EthWalletCard from "../Wallets/Etherium/EthWalletCard";
 
 
 import { HDNodeWallet, Mnemonic } from "ethers";
@@ -20,6 +20,7 @@ interface EthKeyProp {
 interface EthKeys {
     publicKey: string;
     privateKey: string;
+    address: string;
 }
 
 
@@ -42,7 +43,8 @@ export default function EthKeys({ phrase }: EthKeyProp) {
             ...ethKeys,
             {
                 publicKey: wallet.publicKey,
-                privateKey: wallet.address,
+                privateKey: wallet.privateKey,
+                address: wallet.address
             },
         ])
 
@@ -67,9 +69,10 @@ export default function EthKeys({ phrase }: EthKeyProp) {
                     {ethKeys.map((ethKey, i) => (
                         <div key={i}>
 
-                            <Wallet
+                            <EthWalletCard
                                 publicKey={ethKey.publicKey}
                                 privateKey={ethKey.privateKey}
+                                address={ethKey.address}
                             />
 
                         </div>
