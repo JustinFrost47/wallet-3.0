@@ -103,28 +103,34 @@ export default function ReceivePannel({ currentWallet , visible, setVisible, bal
 
 
                         <div className="text-center text-white flex flex-col justify-center items-center ">
-                            <p className="text-2xl">Send</p>
+                            <p className="text-2xl m-4 mb-8 p-4">Send</p>
 
 
-                            <Label htmlFor="amount">Enter Amount</Label>
+                        <div className="m-4 p-4">
+                        <Label htmlFor="amount">Enter Amount</Label>
                             <Input
-                                className="bg-slate-700 border-slate-800"
+                                className="bg-slate-700 border-slate-800  m-2 p-2"
                                 value={amount}
                                 onChange={handleAmountChange}
                                 type="text"
                                 placeholder="SOL"
                                 id="amount"
                             />
+                        </div>
 
-                            <Label htmlFor="toAddress">Enter Receiver's public key</Label>
+                        <div className="m-4 p-4">
+                        <Label  htmlFor="toAddress">Enter Receiver's public key</Label>
                             <Input
-                                className="bg-slate-700 border-slate-800"
+                                className="bg-slate-700 border-slate-800 m-2 p-2"
                                 value={toAddress}
                                 onChange={handleToAddressChange}
                                 type="text"
                                 placeholder="Address"
                                 id="toAddress"
                             />
+                        </div>
+
+                            
                             
 
 
