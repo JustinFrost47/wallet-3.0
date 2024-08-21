@@ -38,32 +38,38 @@ export default function ReceivePannel({ currentWallet , visible, setVisible, bal
     };
 
     // Handler for sending the transaction
-    const sendTransaction =  () => {
-
-        try{
-            const amountToSend : number = parseFloat(amount)
-
-            if(isNaN(amountToSend)){
-                toast.error("Invalid Amount")
-                return 
+    const sendTransaction = async () => {
+        try {
+            // Convert amount to a number and check for validity
+            const amountToSend: number = parseFloat(amount);
+    
+            if (isNaN(amountToSend) || amountToSend <= 0) {
+                toast.error("Invalid Amount");
+                return;
             }
             
-            if(amountToSend > balance ) {
-                toast.error("Insufficient Balance")
-                return 
-            } else {
-
-                if(currentWallet.validatePublicKey(toAddress)){
-                    currentWallet.sendTransaction(amountToSend, toAddress)
-                    toast.success("Token Transferred")
-                }
-
+            // Check if the amount is within the available balance
+            if (amountToSend > balance) {
+                toast.error("Insufficient Balance");
+                return;
             }
+    
+            // Validate the recipient's public key and send the transaction
+            if (currentWallet.validatePublicKey(toAddress)) {
+                // Assuming sendTransaction is asynchronous
+                await currentWallet.sendTransaction(amountToSend, toAddress);
+                toast.success("Token Transferred");
+            } else {
+                toast.error("Invalid Recipient Address");
+            }
+    
         } catch (e) {
-            toast.error("Action Failed")
+            // Log error details for debugging purposes
+            console.error("Transaction error:", e);
+            toast.error("Action Failed");
         }
-
     };
+    
 
     // Handler for changing the amount
     const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
