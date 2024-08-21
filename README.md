@@ -4,6 +4,8 @@
 
 This is a simple crypto wallet that I built during my web3 learning journey at 100xDevs cohort. The workflow is straightforward: users can create a new mnemonic phrase and generate their key pairs, or they can bring their own mnemonic keys. I deliberately avoided saving the phrase in browser's local storage due to security concerns. Feel free to browse around , happy coding
 
+Update : I Added Check Balance and send Solana functionality along with some visual changes. Linked Solana's devnet's faucet, so have fun checking it out
+
 ## Live Link
 
 Check out the live version of the wallet here: [Crypto Wallet 3.0](https://justinfrost47.github.io/wallet-3.0/)
