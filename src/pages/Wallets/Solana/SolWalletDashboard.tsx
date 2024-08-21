@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import SolWallet from "./SolWallet";
 import ReceivePannel from "../ReceivePannel";
+import SendSolPannel from './SendSolPannel'
 
 
 
@@ -23,10 +24,14 @@ export default function WalletDashboard({ walletName = sampleName, publicKey = s
 
     const [balance, setBalance] = useState(0)
     const [receiveVisible, setRecevieVisible] = useState(false)
+    const [sendVisible, setSendVisible] = useState(false)
 
     const CurrentWallet : SolWallet= new SolWallet(publicKey, privateKey)
 
     useEffect(() => {
+
+        
+        // CurrentWallet.sendTransaction(0.001, "6BRGWmJXisQKGR2BL1X9RxLkRpceRd522AbUApmetrgF" )
 
         CurrentWallet.getBalance()
         .then((res) => {
@@ -45,6 +50,10 @@ export default function WalletDashboard({ walletName = sampleName, publicKey = s
 
     const toggleReceivePannel = () => {
         setRecevieVisible(!receiveVisible)
+    }
+
+    const toggleSendPannel = () => {
+        setSendVisible(!sendVisible)
     }
 
 
@@ -84,7 +93,7 @@ export default function WalletDashboard({ walletName = sampleName, publicKey = s
 
                                 <span className="send flex flex-col items-center m-4 p-4">
                                     <div className="w-12 h-12 rounded-full bg-slate-900 hover:bg-black m-2 ">
-                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <svg onClick={toggleSendPannel} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M12 17L12 8" stroke="#1E293B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                                         <path d="M16 11L12 7L8 11" stroke="#1E293B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                                     </svg>
@@ -101,6 +110,7 @@ export default function WalletDashboard({ walletName = sampleName, publicKey = s
                         </div>
                     </div>
                     {receiveVisible && <ReceivePannel publicKey={publicKey} visible={receiveVisible} setVisible={setRecevieVisible}/> }
+                    {sendVisible && <SendSolPannel publicKey={publicKey} visible={sendVisible} setVisible={setSendVisible}/>}
                 </div>
             )}
         </>
