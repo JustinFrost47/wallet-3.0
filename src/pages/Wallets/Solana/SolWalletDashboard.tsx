@@ -1,3 +1,9 @@
+import { useEffect, useState } from "react";
+
+import SolWallet from "./SolWallet";
+import ReceivePannel from "../ReceivePannel";
+
+
 
 
 interface WalletDashboardProps {
@@ -15,12 +21,32 @@ let sampleName = "Wallet"
 export default function WalletDashboard({ walletName = sampleName, publicKey = sampleKey, privateKey = sampleAddress, visible, setVisible }: WalletDashboardProps) {
     // State to control the visibility of the dashboard
 
+    const [balance, setBalance] = useState(0)
+    const [receiveVisible, setRecevieVisible] = useState(false)
+
+    const CurrentWallet : SolWallet= new SolWallet(publicKey, privateKey)
+
+    useEffect(() => {
+
+        CurrentWallet.getBalance()
+        .then((res) => {
+            console.log(res)
+            
+            setBalance(res)
+        })
+
+    }, [])
 
     // Handler to close the dashboard
     const handleClose = () => {
 
         setVisible(false);
     };
+
+    const toggleReceivePannel = () => {
+        setRecevieVisible(!receiveVisible)
+    }
+
 
     // If not visible, don't render anything
     if (!visible) return null;
@@ -39,14 +65,14 @@ export default function WalletDashboard({ walletName = sampleName, publicKey = s
                         <div className="text-center text-white">
                             <p className="text-2xl">{walletName}</p>
                             <div className="balance text-5xl p-4 m-4 font-bold my-16"> 
-                                <p>$ 250.50</p> 
+                                <p>{balance } SOL</p> 
 
                             </div>
                             
                             <div className="actions flex flex-row justify-center items-center  ">
 
                                 <span className="receive flex flex-col items-center m-4 p-4">
-                                    <div className="w-12 h-12 rounded-full bg-gray-900 hover:bg-black m-2">
+                                    <div onClick={toggleReceivePannel} className="w-12 h-12 rounded-full bg-gray-900 hover:bg-black m-2">
                                     <svg style={{ transform: "rotate(180deg)" }} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M12 17L12 8" stroke="#1E293B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                                         <path d="M16 11L12 7L8 11" stroke="#1E293B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -74,6 +100,7 @@ export default function WalletDashboard({ walletName = sampleName, publicKey = s
 
                         </div>
                     </div>
+                    {receiveVisible && <ReceivePannel publicKey={publicKey} visible={receiveVisible} setVisible={setRecevieVisible}/> }
                 </div>
             )}
         </>

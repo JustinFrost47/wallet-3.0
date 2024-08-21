@@ -1,5 +1,5 @@
 import { useState } from "react";
-import WalletDashboard from "./WalletDashboard"
+import WalletDashboard from "./SolWalletDashboard"
 
 interface walletDetails {
   walletName?: string;
@@ -16,6 +16,8 @@ let sampleKey = "temp"
 export default function WalletDetails({ walletName ="Wallet", publicKey = sampleKey, privateKey = sampleAddress }: walletDetails) {
 
   const [openDashboard, setOpenDashboard] = useState(false);
+
+
 
   const showDashboard = () => {
     console.log("hi")

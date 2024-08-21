@@ -1,6 +1,6 @@
 import { useState } from "react"
-import Wallet from "../Wallets/Wallet"
 import { Button } from "../../components/ui/button";
+import Wallet from "../Wallets/Solana/SolWalletCard";
 
 
 import nacl from "tweetnacl";
@@ -54,11 +54,11 @@ export default function SolanaKeys({ phrase }: SolanaKeyProp) {
                 privateKey: solanaPrivateKey,
             }
         ])
-        console.log({
-            publicKey: solanaPublicKey,
-            privateKey: solanaPrivateKey,
-        })
-        console.log(solKeys)
+        // console.log({
+        //     publicKey: solanaPublicKey,
+        //     privateKey: solanaPrivateKey,
+        // })
+        // console.log(solKeys)
 
     }
 
